@@ -1,0 +1,58 @@
+<loginpage>:
+
+    FloatLayout:
+        canvas:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: "icones/bg1.png"
+        Label:
+
+            text: "CONTROLE DE VENDAS[color=#00CFDB] HASHTAG[/color]"
+            bold: True
+            markup: True
+            pos_hint: {"top": 1, "right": 0.9}
+            size_hint: 0.8, 0.2
+
+        TextInput:
+            id: email_input
+            hint_text: "E-mail"
+            pos_hint: {"top": 0.8, "right": 0.7}
+            size_hint: 0.4, 0.1
+
+        TextInput:
+            id: senha_input
+            password:  True
+            hint_text: "Senha"
+            pos_hint: {"top": 0.6, "right": 0.7}
+            size_hint: 0.4, 0.1
+
+        Label:
+            id:mensagem_login
+            text:"[color=#00CFDB]FAÇA SEU LOGIN[/color]"
+            bold: True
+            markup: True
+            pos_hint: {"top": 0.7, "right": 0.9}
+            size_hint: 0.8, 0.7
+
+        LabelButton:
+            canvas.before:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: "icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png"
+            on_release: app.firebase.fazer_login(email_input.text, senha_input.text)
+            text: "Faça seu Login"
+            pos_hint: {"top": 0.3, "right": 0.45}
+            size_hint: 0.4, 0.2
+
+        LabelButton:
+            canvas.before:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: "icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png"
+            on_release: app.firebase.criar_conta(email_input.text, senha_input.text)
+            text: "Criar Conta"
+            pos_hint: {"top": 0.3, "right": 0.95}
+            size_hint: 0.4, 0.2
